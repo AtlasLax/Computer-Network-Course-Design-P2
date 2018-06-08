@@ -27,11 +27,11 @@ def msg_send():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((server_ip1, server_port3))
 
-    # Send msg transmission flag
+    # Send msg transmission flag -- 1st send
     client.send("msg".encode("utf-8"))
     time.sleep(1)
 
-    # IP send
+    # Send IP -- 2nd send
     client.send(client_ip1.encode("utf-8"))
     time.sleep(1)
 
@@ -40,6 +40,7 @@ def msg_send():
     print("Input:")
 
     msg = input()
+    # Send message -- 3rd send
     client.send(msg.encode("utf-8"))
     time.sleep(1)
     # print('Message: ', msg)
@@ -56,11 +57,11 @@ def file_send():
     client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
     client.connect((host, server_port3))
 
-    # Send file transmission flag
+    # Send file transmission flag -- 1st send
     client.send("file".encode("utf-8"))
     time.sleep(1)
 
-    # Send IP
+    # Send IP -- 2nd send
     client.send(client_ip1.encode("utf-8"))
     time.sleep(1)
 
@@ -69,13 +70,13 @@ def file_send():
     file = input("Input path of the file:")
     path = input("Input target location(inlude file's name) of the file:")
 
+    # Send path & name -- 3rd send
     client.send(path.encode("utf-8"))
     time.sleep(1)
 
-    # file_size = os.path.getsize(file)
-
     file = open(file, "rb")
 
+    # Send file through buffer
     while True:
         file_buffer = file.read(1024)
         if not file_buffer:
@@ -83,7 +84,7 @@ def file_send():
         client.send(file_buffer)
 
     client.close()
-    print("\nsuccessful")
+    print("\nSuccessful")
 
 
 

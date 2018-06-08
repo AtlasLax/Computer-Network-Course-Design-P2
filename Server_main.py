@@ -19,8 +19,12 @@ print("your ip",server_ip1)
 
 
 while True:
+    # Start a infinite loop
+
 
     """
+        abandoned socekt
+    
     conn, addr1 = message.accept()
     target, addr2 = file.accept()
     Server_tools.addr_recv(message)
@@ -31,13 +35,18 @@ while True:
 
     target, addr3 = server.accept()
 
+    # Receive a flag first
     flag = target.recv(1024)
 
     print(flag.decode("utf-8"))
+
+    # Create a thread by judging flag
+        # File receive thread
     if flag.decode("utf-8") == "file":
         dispose = threading.Thread(target=Server_tools.file_recv, args=(target,))
         dispose.start()
 
+        # Message receive thread
     elif flag.decode("utf-8") == "msg":
         dispose = threading.Thread(target = Server_tools.msg_recv, args=(target,))
         dispose.start()

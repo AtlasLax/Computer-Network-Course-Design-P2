@@ -5,7 +5,7 @@ import Client_tools
 
 
 flag = 0
-print("Input 'DCDC' to exit")
+print("Input 'DCDC' in 'Message send' to exit")
 while True:
     choice = 0
     print("1.Messeage send")
